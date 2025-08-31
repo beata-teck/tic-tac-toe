@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tic Tac Toe – Solo or Duo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <h1>Tic Tac Toe – Solo or Duo!</h1>
+      <p class="tagline">Fast. Playful. Fair. Built with HTML, CSS, and JavaScript.</p>
+    </header>
+
+    <section class="controls">
+      <div class="mode">
+        <button id="singlePlayerBtn" class="mode-btn" aria-pressed="false">Single Player</button>
+        <button id="twoPlayerBtn" class="mode-btn active" aria-pressed="true">Two Player</button>
+      </div>
+
+      <form id="playerForm" class="players" autocomplete="off">
+        <div class="field">
+          <label for="playerX">Player X</label>
+          <input id="playerX" name="playerX" type="text" placeholder="Enter name (X)" />
+        </div>
+        <div class="field">
+          <label for="playerO">Player O</label>
+          <input id="playerO" name="playerO" type="text" placeholder="Enter name (O)" />
+        </div>
+        <button id="startBtn" type="button" class="primary">Start Game</button>
+      </form>
+
+      <div class="scoreboard" aria-label="Scoreboard">
+        <div class="score">
+          <span class="badge x">X</span>
+          <span id="scoreX">0</span>
+        </div>
+        <div class="score">
+          <span class="badge o">O</span>
+          <span id="scoreO">0</span>
+        </div>
+        <div class="score">
+          <span class="badge draw">=</span>
+          <span id="scoreD">0</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="board-wrap">
+      <div id="status" class="status" aria-live="polite">Choose a mode and press Start.</div>
+
+      <div id="board"
+           class="board"
+           role="grid"
+           aria-label="Tic Tac Toe board">
+        <!-- 9 cells -->
+        <button class="cell" data-index="0" role="gridcell" aria-label="Cell 1"></button>
+        <button class="cell" data-index="1" role="gridcell" aria-label="Cell 2"></button>
+        <button class="cell" data-index="2" role="gridcell" aria-label="Cell 3"></button>
+        <button class="cell" data-index="3" role="gridcell" aria-label="Cell 4"></button>
+        <button class="cell" data-index="4" role="gridcell" aria-label="Cell 5"></button>
+        <button class="cell" data-index="5" role="gridcell" aria-label="Cell 6"></button>
+        <button class="cell" data-index="6" role="gridcell" aria-label="Cell 7"></button>
+        <button class="cell" data-index="7" role="gridcell" aria-label="Cell 8"></button>
+        <button class="cell" data-index="8" role="gridcell" aria-label="Cell 9"></button>
+      </div>
+
+      <div class="actions">
+        <button id="restartBtn" class="secondary">Restart Round</button>
+        <button id="resetBtn" class="ghost">Reset All</button>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <small>Built for practice. Designed to feel.</small>
+    </footer>
+  </main>
+  <script src="script.js" defer></script>
+</body>
+</html>
