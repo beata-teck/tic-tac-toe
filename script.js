@@ -161,5 +161,63 @@ if (state.mode === 'single' && state.current === 'O'){
     }
     return null;
   }
+function isDraw(board){
+    return board.every(x => x !== null);
+  }
+
+  // ----- AI (Basic Smart) -----
+  function makeComputerMove(){
+    const board = state.board.slice();
+    const me = 'O';
+    const you = 'X';
+
+    // 1) Win if possible
+    let idx = findWinningMove(board, me);
+    if (idx == null){
+      // 2) Block player
+      idx = findWinningMove(board, you);
+    }
+    if (idx == null){
+      // 3) Priority: center, corners, sides
+      idx = getBestMove(board);
+    }
+    if (idx != null){
+      placeMark(idx, me);
+    }
+return idx;
+  }
+
+  function findWinningMove(board, symbol){
+    for (let i=0; i<9; i++){
+      if (board[i] === null){
+        board[i] = symbol;
+        const win = checkWinner(board);
+        board[i] = null;
+        if (win && win.symbol === symbol) return i;
+      }
+    }
+    return null;
+  }
+function getBestMove(board){
+    const priority = [4,0,2,6,8,1,3,5,7];
+    for (const i of priority){
+      if (board[i] === null) return i;
+    }
+    return null;
+  }
+
+  // ----- Round End / Scores -----
+  function endRound(type, win){
+    state.playing = false;
+
+    if (type === 'win' && win){
+      const { symbol, line } = win;
+      line.forEach(i => el.cells[i].classList.add('win'));
+      state.scores[symbol] += 1;
+      renderScores();
+      renderStatus(`${state.players[symbol]} wins!`);
+      lockCells();
+      return;
+    }
 
 
