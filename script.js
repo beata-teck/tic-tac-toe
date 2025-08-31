@@ -57,4 +57,12 @@
       if (el.nameO.value === 'Computer') el.nameO.value = '';
     }
   }
+ function startGame(){
+    state.players.X = el.nameX.value.trim() || 'Player X';
+    state.players.O = el.nameO.disabled ? 'Computer' : (el.nameO.value.trim() || 'Player O');
+    resetBoard(false);
+    state.playing = true;
+    renderStatus(`${state.players.X} (X) starts. Your move.`);
+  }
+
 
