@@ -90,5 +90,58 @@
     el.nameX.value = '';
     if (!el.nameO.disabled) el.nameO.value = '';
   }
+function onCellClick(cell){
+    if (!state.playing || state.lock) return;
+    const i = Number(cell.dataset.index);
+    if (state.board[i] !== null){
+      flashInvalid(cell);
+      return;
+    }
+    placeMark(i, state.current);
+
+    const win = checkWinner(state.board);
+    if (win){
+      endRound('win', win);
+      return;
+    }
+    if (isDraw(state.board)){
+      endRound('draw');
+      return;
+    }
+
+    switchTurn();
+if (state.mode === 'single' && state.current === 'O'){
+      state.lock = true;
+      setTimeout(() => {
+        const move = makeComputerMove();
+        if (move != null){
+          const aiCell = el.cells[move];
+          aiCell.classList.add('ai');
+          setTimeout(() => aiCell.classList.remove('ai'), 260);
+        }
+        const win2 = checkWinner(state.board);
+        if (win2){
+          endRound('win', win2);
+          state.lock = false;
+          return;
+        }
+        if (isDraw(state.board)){
+          endRound('draw');
+          state.lock = false;
+          return;
+        }
+        switchTurn();
+        state.lock = false;
+      }, 420);
+   }
+  }
+
+  // ----- Game Logic -----
+  const LINES = [
+    [0,1,2],[3,4,5],[6,7,8], // rows
+    [0,3,6],[1,4,7],[2,5,8], // cols
+    [0,4,8],[2,4,6]          // diagonals
+  ];
+
 
 
