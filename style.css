@@ -50,3 +50,19 @@ body{
   border-color:var(--accent);
   box-shadow:0 0 0 4px #7c5cff22;
 }
+.players{
+  display:grid;
+  grid-template-columns:1fr 1fr auto;
+  gap:10px;
+  align-items:end;
+}
+.field{display:grid;gap:6px}
+label{font-size:.9rem;color:var(--muted)}
+input{
+  background:#10121b;
+  color:var(--ink);
+  border:1px solid #24263a;
+  border-radius:10px;
+  padding:10px 12px;
+  outline:none;
+}
