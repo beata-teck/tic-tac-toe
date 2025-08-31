@@ -143,5 +143,23 @@ if (state.mode === 'single' && state.current === 'O'){
     [0,4,8],[2,4,6]          // diagonals
   ];
 
+  function placeMark(index, symbol){
+    state.board[index] = symbol;
+    renderCell(index, symbol);
+  }
+
+  function switchTurn(){
+    state.current = state.current === 'X' ? 'O' : 'X';
+    renderStatus(`${state.players[state.current]} (${state.current}) to move.`);
+  }
+
+  function checkWinner(board){
+    for (const [a,b,c] of LINES){
+      if (board[a] && board[a] === board[b] && board[b] === board[c]){
+        return { symbol: board[a], line: [a,b,c] };
+      }
+    }
+    return null;
+  }
 
 
