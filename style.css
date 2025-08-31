@@ -1,0 +1,13 @@
+:root{
+  --bg:#0f0f13;
+  --panel:#17171f;
+  --ink:#e7e7ee;
+  --muted:#a5a8b4;
+  --accent:#7c5cff;
+  --accent-2:#22c55e;
+  --danger:#ef4444;
+  --draw:#f59e0b;
+  --x:#60a5fa;
+  --o:#f472b6;
+  --ring: 2px solid rgba(124,92,255,.35);
+}
