@@ -64,5 +64,31 @@
     state.playing = true;
     renderStatus(`${state.players.X} (X) starts. Your move.`);
   }
+ function resetBoard(hard){
+    state.board = Array(9).fill(null);
+    state.current = 'X';
+    state.playing = true;
+    state.lock = false;
+
+    el.cells.forEach(c => {
+      c.textContent = '';
+      c.className = 'cell';
+      c.setAttribute('aria-disabled','false');
+    });
+
+    if (hard){
+      state.scores = { X:0, O:0, D:0 };
+      renderScores();
+      renderStatus('Choose a mode and press Start.');
+      state.playing = false;
+    } else {
+      renderStatus(`${state.players.X} (X) starts. Your move.`);
+    }
+  }
+  function hardReset(){
+    resetBoard(true);
+    el.nameX.value = '';
+    if (!el.nameO.disabled) el.nameO.value = '';
+  }
 
 
